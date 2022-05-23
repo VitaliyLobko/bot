@@ -34,9 +34,8 @@ def show_all(*args):
     print(ADDRESS_BOOK)
 
 
-def good_bye():
-    print('Good bye!')
-    return "Good bye!"
+def good_bye(*args):
+    return 'Good bye!'
 
 
 ADDRESS_BOOK = {'vitaliy': '+380 050 616 33 99', 'andriy': '+380 050 646 33 92'}
@@ -45,9 +44,9 @@ COMMANDS = {
     hello: "hello",
     add: "add",
     phone: "phone",
-    show_all: "show",
+    show_all: "show", #show all
     change: "change",
-    good_bye: "good bye"
+    good_bye: "good" #good bye
 }
 
 
