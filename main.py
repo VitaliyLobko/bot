@@ -1,6 +1,11 @@
 def decorator(func):
     def wrapper(*args):
-        return func(*args)
+        try:
+            return func(*args)
+        except IndexError:
+            print ('waiting from you: add phone')
+        except KeyError:
+            print('can`t find this key')
     return wrapper
 
 
@@ -10,8 +15,6 @@ def hello(*args):
 
 @decorator
 def add(param):
-    if len(param)<2:
-        return 'waiting from you: add phone'
 
     if ADDRESS_BOOK.get(param[0]) != None:
         print('already exist! rewrite? y/n')
@@ -27,7 +30,6 @@ def add(param):
 def change(param):
     if len(param) < 2:
         return 'waiting from you: name phone'
-
     ADDRESS_BOOK[param[0]] = param[1]
     return f'changed, now: {param[0]} - {param[1]}'
 
@@ -40,9 +42,6 @@ def phone(param):
 def show_all(*args):
     print(ADDRESS_BOOK)
 
-@decorator
-def good_bye(*args):
-    return 'Good bye!'
 
 
 ADDRESS_BOOK = {'vitaliy': '+380 050 616 33 99', 'andriy': '+380 050 646 33 92'}
@@ -52,8 +51,7 @@ COMMANDS = {
     add: "add",
     phone: "phone",
     show_all: "show", #show all
-    change: "change",
-    good_bye: "good" #good bye
+    change: "change"
 }
 
 
@@ -61,7 +59,7 @@ def main():
     while True:
         command,  *param = list(input(">>>").lower().split())
 
-        if command == '.':
+        if command == '.' or 'good bye':
             print('Good bye!')
             break
 
