@@ -1,7 +1,14 @@
+def decorator(func):
+    def wrapper(*args):
+        return func(*args)
+    return wrapper
+
+
+@decorator
 def hello(*args):
     return "How can I help you?"
 
-
+@decorator
 def add(param):
     if len(param)<2:
         return 'waiting from you: add phone'
@@ -16,7 +23,7 @@ def add(param):
         ADDRESS_BOOK[param[0]] = param[1]
         return f'added: {param[0]} - {param[1]}'
 
-
+@decorator
 def change(param):
     if len(param) < 2:
         return 'waiting from you: name phone'
@@ -24,16 +31,16 @@ def change(param):
     ADDRESS_BOOK[param[0]] = param[1]
     return f'changed, now: {param[0]} - {param[1]}'
 
-
+@decorator
 def phone(param):
     ph = (ADDRESS_BOOK.get(param[0]))
     return f'{param} -  {ph}'
 
-
+@decorator
 def show_all(*args):
     print(ADDRESS_BOOK)
 
-
+@decorator
 def good_bye(*args):
     return 'Good bye!'
 
